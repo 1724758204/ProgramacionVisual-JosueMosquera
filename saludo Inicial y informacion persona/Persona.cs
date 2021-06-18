@@ -1,25 +1,25 @@
+using System;
+
 namespace myapp
 {
-    partial class Program
+    class Persona
     {
-        class Persona
-        {
-            public string nombre;
-            public int edad;
-           public float peso;
-           public bool pregunta;
-           public string fecha;
-           public float altura;
-           public string deporte;
-           public string pasatiempo;
-           public double sueldo;
-           public string semestre;
-           
-    }
-
-
-
-
+        public string nombre;
+        public int edad;
+        public float peso;
+        public bool esAficionadoAlFutbol;
+        public DateTime fechaDeCreacionRegistro;
+        public float estatura;
+        public string deporteFavorito;
+        public string pasatiempoFavorito;
+        public double sueldoMensual;
+        public string semestre;
 
     }
+
+
+
+
+
+
 }
