@@ -15,7 +15,7 @@ namespace martes22
         public List<Parroquia> Parroquias
         {
             get; set;
-        }
+        } = new List<Parroquia>();
         public int ObtenerNumeroDeHabitantes()
         {
             int acumulador = 0;

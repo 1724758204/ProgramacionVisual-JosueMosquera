@@ -40,7 +40,7 @@ namespace martes22
             canton1.Parroquias.Add(parroquia1);
             canton1.Parroquias.Add(parroquia2);
 
-            Console.WriteLine(pais1.ObtenerNumeroDeHabitantes());
+            Console.WriteLine($" el resultado de los habitantes totales de las 2 parroquias es:{pais1.ObtenerNumeroDeHabitantes()}");
 
         }
     }

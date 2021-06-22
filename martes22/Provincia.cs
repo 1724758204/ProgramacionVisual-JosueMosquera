@@ -16,7 +16,7 @@ namespace martes22
          public List<Canton> Cantones
         {
             get; set;
-        }
+        } = new List<Canton>();
         public int ObtenerNumeroDeHabitantes()
         {
             int acumulador = 0;

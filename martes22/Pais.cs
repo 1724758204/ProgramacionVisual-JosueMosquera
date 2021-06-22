@@ -16,7 +16,7 @@ namespace martes22
 
         public List<Provincia> Provincias{
             get;set;
-        }
+        } = new List<Provincia>();
         
         public  int ObtenerNumeroDeHabitantes()
         {
