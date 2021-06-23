@@ -14,15 +14,14 @@ namespace martes22
             get; set;
         }
 
-        public List<Provincia> Provincias
-        {
-            get; set;
+        public List<Provincia> Provincias{
+            get;set;
         } = new List<Provincia>();
-
-        public int ObtenerNumeroDeHabitantes()
+        
+        public  int ObtenerNumeroDeHabitantes()
         {
             int acumulador = 0;
-
+            
             foreach (Provincia actual in Provincias)
             {
                 acumulador = acumulador + actual.ObtenerNumeroDeHabitantes();
