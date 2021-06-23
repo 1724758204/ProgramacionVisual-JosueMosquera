@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System;
+
 namespace martes22
 {
     class Provincia
@@ -13,7 +13,7 @@ namespace martes22
             get; set;
         }
 
-         public List<Canton> Cantones
+        public List<Canton> Cantones
         {
             get; set;
         } = new List<Canton>();
