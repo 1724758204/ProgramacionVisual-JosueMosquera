@@ -48,10 +48,6 @@ namespace TareaArbol
          }
             return acumulador;
         }
-        /*
-        public List<ControladorArbol> Niveles
-        {
-            get; set;
-        } = new List<ControladorArbol>();*/
+       
     }
 }
