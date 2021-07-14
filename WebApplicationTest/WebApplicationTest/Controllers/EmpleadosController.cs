@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationTest.Data;
 using WebApplicationTest.Entities;
@@ -54,6 +52,7 @@ namespace WebApplicationTest.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("EmpleadoId,Nombre,Apellido,Salario,Nacimiento")] Empleado empleado)
         {
             if (ModelState.IsValid)
@@ -86,6 +85,7 @@ namespace WebApplicationTest.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("EmpleadoId,Nombre,Apellido,Salario,Nacimiento")] Empleado empleado)
         {
             if (id != empleado.EmpleadoId)
@@ -137,6 +137,7 @@ namespace WebApplicationTest.Controllers
         // POST: Empleados/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var empleado = await _context.Empleados.FindAsync(id);
