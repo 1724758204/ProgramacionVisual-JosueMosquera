@@ -157,6 +157,22 @@ namespace ModuloNotificaciones.Controllers
         {
             return _context.Producto.Any(e => e.ProductoId == id);
         }
-        
+        public async Task<IActionResult> Notificacion(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var producto = await _context.Producto
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(m => m.ProductoId == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return View(producto);
+        }
     }
 }

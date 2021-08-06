@@ -10,30 +10,23 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3" style="background-color:mediumturquoise; font-weight:bold;" >
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ModuloNotificaciones</a>
+                <img width="80" height="80" style="margin-right:30px" src="~/img/WhatsApp Image 2021-08-02 at 17.46.51.png" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:1.6rem">EcuRefills</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index"style="font-size:1.1rem">Usuarios </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Consultas" asp-action="Index">Consultas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="notificacion" asp-action="Index">Notificacion</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index" style="font-size:1.1rem">Productos</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -47,7 +40,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="margin-top:20px;">
         <div class="container">
             &copy; 2021 - ModuloNotificaciones - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

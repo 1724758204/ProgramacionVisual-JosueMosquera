@@ -6,59 +6,64 @@
 
 <h1>Lista De Productos</h1>
 
+<div style="margin-bottom:200px">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre) Del Producto
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductoId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaRegistro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.Nombre)
+                </th>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre) Del Producto
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductoId) 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaRegistro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario.Nombre)
-            </th>
-            
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.UsuarioId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductoId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductoId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductoId">Borrar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-<a class="btn btn-primary" asp-action="Create">Registrar Producto</a>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)$
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaRegistro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.UsuarioId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductoId">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductoId">Borrar</a> |
+                        <a asp-action="Notificacion" asp-route-id="@item.ProductoId" class="btn btn-info" style=" font-weight:600;">Notificar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <a class="btn btn-primary" asp-action="Create">Registrar Producto</a>
+</div>
+
+
