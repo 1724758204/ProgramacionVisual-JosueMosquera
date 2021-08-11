@@ -7,11 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ModuloNotificaciones.Data;
 using ModuloNotificaciones.Entities;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ModuloNotificaciones.Controllers
 {
     public class ProductosController : Controller
     {
+        
         private readonly ApplicationDbContext _context;
 
         public ProductosController(ApplicationDbContext context)
@@ -49,7 +55,7 @@ namespace ModuloNotificaciones.Controllers
         public IActionResult Create()
         {
             ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "CedulaNombre");
-            
+
             return View();
         }
 
@@ -159,6 +165,7 @@ namespace ModuloNotificaciones.Controllers
         }
         public async Task<IActionResult> Notificacion(int? id)
         {
+          
             if (id == null)
             {
                 return NotFound();
@@ -174,5 +181,44 @@ namespace ModuloNotificaciones.Controllers
 
             return View(producto);
         }
+        public IActionResult EnviarNotificacion(int? id)
+        {
+            String servidor = "smtp.gmail.com";
+
+           
+            String GmailUser = "mcsubmithd@gmail.com";
+            String Gmailpassword = "199811josuecrack";
+            MimeMessage mensaje = new();
+            mensaje.From.Add(new MailboxAddress("Notificacion", GmailUser));
+            
+            
+
+            mensaje.Subject = "Notificacion Producto";
+
+            BodyBuilder CuerpoMensaje = new();
+
+
+            var consulta = from usuario in _context.Usuario
+                           join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
+                           where producto.ProductoId == id
+                           select $" <h1> EcuRefills Agradece su compra, su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
+
+            var correoconsulta = from usuario in _context.Usuario
+                            join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
+                            where producto.ProductoId == id
+                            select usuario.Correo.ToString();
+            string correo = correoconsulta.Single();
+            CuerpoMensaje.HtmlBody = consulta.Single();
+            mensaje.To.Add(new MailboxAddress("Destinatario",correo ));
+            mensaje.Body = CuerpoMensaje.ToMessageBody();
+            SmtpClient ClienteSmtp = new();
+            ClienteSmtp.CheckCertificateRevocation = false;
+            ClienteSmtp.Connect(servidor,465,true);
+            ClienteSmtp.Authenticate(GmailUser, Gmailpassword);
+            ClienteSmtp.Send(mensaje);
+            ClienteSmtp.Disconnect(true);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
