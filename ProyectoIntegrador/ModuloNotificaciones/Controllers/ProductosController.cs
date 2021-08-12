@@ -186,8 +186,8 @@ namespace ModuloNotificaciones.Controllers
             String servidor = "smtp.gmail.com";
 
            
-            String GmailUser = "mcsubmithd@gmail.com";
-            String Gmailpassword = "199811josuecrack";
+            String GmailUser = "ecuarefils@gmail.com";
+            String Gmailpassword = "123456proyecto";
             MimeMessage mensaje = new();
             mensaje.From.Add(new MailboxAddress("Notificacion", GmailUser));
             
@@ -201,7 +201,7 @@ namespace ModuloNotificaciones.Controllers
             var consulta = from usuario in _context.Usuario
                            join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
                            where producto.ProductoId == id
-                           select $" <h1> EcuRefills Agradece su compra, su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
+                           select $" <h1> EcuaRefills Agradece su compra, su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
 
             var correoconsulta = from usuario in _context.Usuario
                             join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
