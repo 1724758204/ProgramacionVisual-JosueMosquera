@@ -12,6 +12,7 @@ using MailKit;
 using MimeKit;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
+using IronPdf;
 
 namespace ModuloNotificaciones.Controllers
 {
@@ -201,15 +202,25 @@ namespace ModuloNotificaciones.Controllers
             var consulta = from usuario in _context.Usuario
                            join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
                            where producto.ProductoId == id
-                           select $" <h1> EcuaRefills Agradece su compra. su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
+                           select $"<h1>Su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
 
             var correoconsulta = from usuario in _context.Usuario
                             join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
                             where producto.ProductoId == id
                             select usuario.Correo.ToString();
             string correo = correoconsulta.Single();
-            CuerpoMensaje.HtmlBody = consulta.Single();
+
+
+            
             mensaje.To.Add(new MailboxAddress("Destinatario",correo ));
+          
+            var htmltopdf = new HtmlToPdf();
+            
+            var pdfdocument = htmltopdf.RenderHtmlAsPdf(consulta.Single());
+            pdfdocument.SaveAs("notificacion.pdf");
+            
+                   CuerpoMensaje.Attachments.Add("notificacion.pdf");
+            CuerpoMensaje.HtmlBody = "<h1> EcuaRefills Agradece su compra,puede revisar los detalles de su compra en el documento adjunto </h1>";
             mensaje.Body = CuerpoMensaje.ToMessageBody();
             SmtpClient ClienteSmtp = new();
             ClienteSmtp.CheckCertificateRevocation = false;
