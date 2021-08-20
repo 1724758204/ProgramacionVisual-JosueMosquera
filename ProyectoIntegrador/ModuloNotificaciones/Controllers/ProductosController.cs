@@ -197,12 +197,12 @@ namespace ModuloNotificaciones.Controllers
             mensaje.Subject = "Notificacion Producto";
 
             BodyBuilder CuerpoMensaje = new();
-
+            
 
             var consulta = from usuario in _context.Usuario
                            join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
                            where producto.ProductoId == id
-                           select $"<h1>Su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
+                           select $"<img src='https://i.imgur.com/zccCjfN.png' width='130' height='75'/><h1>Su compra a sido registrada con los siguientes Detalles</h1> Nombre del Producto:{producto.Nombre}<br> Precio del producto:{producto.Precio}$ <br> Fecha De Compra Del Producto:{producto.FechaRegistro}<br> Cedula Del Cliente:{usuario.UsuarioId} <br> Nombre Del Cliente:{usuario.Nombre} <br> Correo Del Cliente: {usuario.Correo}".ToString();
 
             var correoconsulta = from usuario in _context.Usuario
                             join producto in _context.Producto on usuario.UsuarioId equals producto.UsuarioId
