@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ModuloNotificaciones.Data;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ModuloNotificaciones.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class notificacionController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,7 +31,6 @@ namespace ModuloNotificaciones.Controllers
             {
                 return NotFound();
             }
-
             return View(producto);
         }
     }

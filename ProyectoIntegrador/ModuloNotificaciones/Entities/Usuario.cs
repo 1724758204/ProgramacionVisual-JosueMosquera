@@ -9,11 +9,13 @@ namespace ModuloNotificaciones.Entities
 {
     public class Usuario
     {
-        [DisplayName("Cedula")]
+        [DisplayName("Cédula")]
         public string UsuarioId { get; set; }
+        [DisplayName("Nombre")]
         public string Nombre { get; set; }
+        [DisplayName("Correo")]
         public string Correo { get; set; }
-
+        [DisplayName("Producto")]
         public List<Producto> Productos { get; set; }
         [NotMapped]
         public string CedulaNombre

@@ -9,14 +9,18 @@ namespace ModuloNotificaciones.Entities
 {
     public class Producto
     {
+        [DisplayName("Código de Producto")]
         public int ProductoId { get; set; }
+        [DisplayName("Nombre")]
         public string Nombre { get; set; }
+        [DisplayName("Precio")]
         public float Precio { get; set; }
+        [DisplayName("Fecha de Registro")]
         public DateTime FechaRegistro { get; set; }
         [ForeignKey("Usuario")]
-        [DisplayName("Cedula")]
+        [DisplayName("Cédula")]
         public string UsuarioId { get; set; }
-        [DisplayName("Cedula")]
+        [DisplayName("Cédula")]
         public Usuario Usuario { get; set; }
     }
 }
